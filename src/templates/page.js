@@ -22,10 +22,12 @@ import Amenities from "../blocks/amenities"
 export default ({ data }) => {
   const page = data.allWordpressPage.edges[0].node
   const options = data.allWordpressAcfOptions.edges[0].node
+  let title = page.title
+  title = title.replace(/&#038;/g, "&")
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEO title={title} />
 
       {page.acf.layout_page &&
         page.acf.layout_page.map((child, index) => {
@@ -59,7 +61,7 @@ export default ({ data }) => {
             return <ImageLinks key={index} data={child}></ImageLinks>
 
           // if (child.__typename === "WordPressAcf_testimonials")
-          //   return <Testimonials key={index} data={options}></Testimonials>
+          // return <Testimonials key={index} data={options}></Testimonials>
 
           if (child.__typename === "WordPressAcf_youtube_video")
             return <Video key={index} data={child}></Video>
@@ -84,8 +86,8 @@ export default ({ data }) => {
   )
 }
 export const query = graphql`
-  {
-    allWordpressPage(filter: { path: { eq: "/" } }) {
+  query($slug: String!) {
+    allWordpressPage(filter: { slug: { eq: $slug } }) {
       edges {
         node {
           acf {

@@ -1,35 +1,45 @@
 const path = require(`path`)
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const BlogPostTemplate = path.resolve("./src/templates/post.js")
-
-  const result = await graphql(`
+  return graphql(`
     {
-      allWordpressPost {
+      allWordpressPost(sort: { fields: [date] }) {
         edges {
           node {
             slug
-            wordpress_id
+          }
+        }
+      }
+      allWordpressPage {
+        edges {
+          node {
+            slug
           }
         }
       }
     }
-  `)
+  `).then(result => {
+    result.data.allWordpressPost.edges.forEach(({ node }) => {
+      createPage({
+        path: node.slug,
+        component: path.resolve(`./src/templates/post.js`),
+        context: {
+          // This is the $slug variable
+          // passed to post.js
+          slug: node.slug,
+        },
+      })
+    })
 
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
-  }
-
-  const BlogPosts = result.data.allWordpressPost.edges
-  BlogPosts.forEach(post => {
-    createPage({
-      path: `/${post.node.slug}`,
-      component: BlogPostTemplate,
-      context: {
-        id: post.node.wordpress_id,
-      },
+    result.data.allWordpressPage.edges.forEach(({ node }) => {
+      createPage({
+        path: node.slug,
+        component: path.resolve(`./src/templates/page.js`),
+        context: {
+          slug: node.slug,
+        },
+      })
     })
   })
 }

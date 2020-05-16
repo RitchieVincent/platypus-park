@@ -1,8 +1,13 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Platypus Park Riverside Retreat - Bundaberg Wedding Venue and Holiday Destination`,
+    description: `A 50 acre organic farm on the Burnett River that offers a stunning venue for your country wedding as well as villa accommodation or camping facilities.`,
+    author: `Ritchie Vincent`,
+    // siteUrl: `https://needstobetheproductionurl.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,16 +35,58 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        // your WordPress source
         baseUrl: `wpprr.local`,
         protocol: `http`,
-        // is it hosted on wordpress.com, or self-hosted?
         hostingWPCOM: false,
-        // does your site use the Advanced Custom Fields Plugin?
-        useACF: false,
+        useACF: true,
+        auth: {
+          htaccess_user: process.env.WP_USERNAME,
+          htaccess_pass: process.env.WP_PASSWORD,
+          htaccess_sendImmediately: false,
+        },
       },
     },
+    // {
+    //   resolve: `gatsby-wordpress-gutenberg`,
+    //   options: {
+    //     baseUrl: `wpprr.local`,
+    //     https: false,
+    //     // includedTypes: ["wordpress__POST", "wordpress__PAGE"], // Nodes that contain Gutenberg blocks to transform - optional
+    //     // excludedBlocks: [], // Blocks to exclude - optional
+    //   },
+    // },
     `gatsby-plugin-sitemap`,
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
+    },
+    `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Libre Baskerville`,
+          },
+          {
+            family: `Nunito Sans`,
+            variants: [`300`, `400`, `800`],
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-scroll-reveal`,
+      options: {
+        threshold: 0.5,
+        once: true,
+        disable: false,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
