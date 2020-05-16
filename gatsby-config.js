@@ -35,15 +35,15 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: `wpprr.local`,
+        baseUrl: `178.62.73.143`,
         protocol: `http`,
         hostingWPCOM: false,
         useACF: true,
-        auth: {
-          htaccess_user: process.env.WP_USERNAME,
-          htaccess_pass: process.env.WP_PASSWORD,
-          htaccess_sendImmediately: false,
-        },
+        // auth: {
+        //   htaccess_user: process.env.WP_USERNAME,
+        //   htaccess_pass: process.env.WP_PASSWORD,
+        //   htaccess_sendImmediately: false,
+        // },
       },
     },
     // {
