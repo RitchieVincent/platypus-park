@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useLayoutEffect } from "react"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { colours } from "../components/theme"
@@ -78,15 +78,19 @@ const Overlay = styled.div`
   );
 `
 
-const Hero = ({ data }) => {
+const ParallaxCache = () => {
   const { parallaxController } = useController()
 
-  useEffect(() => {
-    window.requestAnimationFrame(() => {
-      parallaxController.update()
-    })
-  })
+  useLayoutEffect(() => {
+    const handler = () => parallaxController.update()
+    window.addEventListener("load", handler)
+    return () => window.removeEventListener("load", handler)
+  }, [parallaxController])
 
+  return null
+}
+
+const Hero = ({ data }) => {
   return (
     <HeroContainer small={data.small_hero}>
       <Content small={data.small_hero}>
@@ -96,6 +100,7 @@ const Hero = ({ data }) => {
       <Parallax className="parallax-container" y={[-30, 30]}>
         <Img fluid={data.image.localFile.childImageSharp.fluid} />
       </Parallax>
+      {typeof window !== "undefined" ? <ParallaxCache /> : null}
       <Overlay />
     </HeroContainer>
   )
