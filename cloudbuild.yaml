@@ -10,6 +10,9 @@ steps:
     args: ["add", "firebase-functions"]
   - name: node:10.15.1
     entrypoint: yarn
+    args: ["add", "firebase-admin"]
+  - name: node:10.15.1
+    entrypoint: yarn
     args: ["build"]
   - name: "node:10.15.1"
     entrypoint: "./node_modules/.bin/firebase"
