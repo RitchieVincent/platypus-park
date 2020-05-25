@@ -100,9 +100,8 @@ export default ({ data }) => {
                 data-sal-easing="easeOutQuad"
                 data-sal-duration="1000"
                 data-sal-delay="600"
-              >
-                {item.description}
-              </Description>
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
               <Enquire
                 data-sal="slide-up"
                 data-sal-easing="easeOutQuad"
