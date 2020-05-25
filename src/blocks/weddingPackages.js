@@ -15,16 +15,6 @@ const Package = styled.div`
   &:not(:last-of-type) {
     margin-bottom: 60px;
   }
-
-  @media (min-width: 768px) {
-    &:nth-of-type(even) {
-      div[class*="Info"] {
-        order: -1;
-        padding-left: 0;
-        padding-right: 40px;
-      }
-    }
-  }
 `
 
 const Info = styled.div`
@@ -90,7 +80,7 @@ export default ({ data }) => {
             </Image>
             <Info>
               <Title
-                data-sal={index % 2 === 1 ? "slide-right" : "slide-left"}
+                data-sal="slide-left"
                 data-sal-easing="easeOutQuad"
                 data-sal-duration="1000"
                 data-sal-delay="400"
@@ -98,7 +88,7 @@ export default ({ data }) => {
                 {item.title}
               </Title>
               <Price
-                data-sal={index % 2 === 1 ? "slide-right" : "slide-left"}
+                data-sal="slide-left"
                 data-sal-easing="easeOutQuad"
                 data-sal-duration="1000"
                 data-sal-delay="500"
@@ -106,7 +96,7 @@ export default ({ data }) => {
                 {item.price}
               </Price>
               <Description
-                data-sal={index % 2 === 1 ? "slide-right" : "slide-left"}
+                data-sal="slide-left"
                 data-sal-easing="easeOutQuad"
                 data-sal-duration="1000"
                 data-sal-delay="600"
