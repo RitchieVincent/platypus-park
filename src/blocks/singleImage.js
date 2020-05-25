@@ -5,6 +5,12 @@ import Img from "gatsby-image"
 
 const ImageContainer = styled.div`
   margin-bottom: 60px;
+  max-width: 100%;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    max-width: 70%;
+  }
 `
 
 export default ({ data }) => {
