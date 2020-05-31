@@ -4,6 +4,25 @@ import styled from "@emotion/styled"
 import { colours } from "../components/theme"
 import { Parallax, useController } from "react-scroll-parallax"
 
+const Caption = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  outline: 1px solid rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  color: ${colours.white};
+  font-family: "Libre Baskerville", serif;
+`
+
 const HeroContainer = styled.div`
   position: relative;
   height: 100vh;
@@ -24,6 +43,13 @@ const HeroContainer = styled.div`
   }
 
   ${({ small }) => small && `height: 40vh;`}
+
+  &:hover {
+    ${Caption} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 `
 
 const Title = styled.h1`
@@ -102,6 +128,9 @@ const Hero = ({ data }) => {
       </Parallax>
       {typeof window !== "undefined" ? <ParallaxCache /> : null}
       <Overlay />
+      {data.image.caption ? (
+        <Caption>{data.image.caption.replace(/(<([^>]+)>)/gi, "")}</Caption>
+      ) : null}
     </HeroContainer>
   )
 }

@@ -5,6 +5,25 @@ import { colours } from "../components/theme"
 import Container from "../components/container"
 import { RemoveScroll } from "react-remove-scroll"
 
+const Caption = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  outline: 1px solid rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  color: ${colours.white};
+  font-family: "Libre Baskerville", serif;
+`
+
 const GalleryGridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 180px);
@@ -18,8 +37,16 @@ const GalleryGridContainer = styled.div`
 `
 
 const GalleryGridItem = styled.div`
+  position: relative;
   display: flex;
   cursor: pointer;
+
+  &:hover {
+    ${Caption} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 `
 
 const LightBoxContainer = styled.div`
@@ -59,6 +86,13 @@ const LighBoxImage = styled.div`
   .gatsby-image-wrapper {
     flex: 1;
     max-height: 100%;
+  }
+
+  &:hover {
+    ${Caption} {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 `
 
@@ -137,6 +171,9 @@ const GalleryGridComponent = ({ data }) => {
               }}
             >
               <Img fixed={image.localFile.childImageSharp.fixed} />
+              {image.caption ? (
+                <Caption>{image.caption.replace(/(<([^>]+)>)/gi, "")}</Caption>
+              ) : null}
             </GalleryGridItem>
           ))}
         </GalleryGridContainer>
@@ -178,6 +215,14 @@ const GalleryGridComponent = ({ data }) => {
             >
               Next
             </Button>
+            {data.images[lightboxImage].caption ? (
+              <Caption>
+                {data.images[lightboxImage].caption.replace(
+                  /(<([^>]+)>)/gi,
+                  ""
+                )}
+              </Caption>
+            ) : null}
           </LighBoxImage>
         </LightBoxContainer>
       </RemoveScroll>

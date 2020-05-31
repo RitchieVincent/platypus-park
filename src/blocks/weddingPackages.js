@@ -4,6 +4,25 @@ import Container from "../components/container"
 import Img from "gatsby-image"
 import { colours } from "../components/theme"
 
+const Caption = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  outline: 1px solid rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  color: ${colours.white};
+  font-family: "Libre Baskerville", serif;
+`
+
 const Package = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,7 +64,15 @@ const Price = styled.p`
 const Description = styled.p``
 
 const Image = styled.div`
+  position: relative;
   flex: 1;
+
+  &:hover {
+    ${Caption} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 `
 
 const Wrapper = styled.section`
@@ -77,6 +104,11 @@ export default ({ data }) => {
               data-sal-duration="2000"
             >
               <Img fluid={item.image.localFile.childImageSharp.fluid} />
+              {item.image.caption ? (
+                <Caption>
+                  {item.image.caption.replace(/(<([^>]+)>)/gi, "")}
+                </Caption>
+              ) : null}
             </Image>
             <Info>
               <Title

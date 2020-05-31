@@ -103,6 +103,7 @@ export const query = graphql`
                 subtitle
                 small_hero
                 image {
+                  caption
                   localFile {
                     childImageSharp {
                       fluid {
@@ -120,6 +121,7 @@ export const query = graphql`
               }
               ... on WordPressAcf_gallery_grid {
                 images {
+                  caption
                   localFile {
                     childImageSharp {
                       fluid {
@@ -155,6 +157,7 @@ export const query = graphql`
                 title
                 text
                 images {
+                  caption
                   localFile {
                     childImageSharp {
                       fixed(width: 200, height: 250) {
@@ -191,6 +194,7 @@ export const query = graphql`
                   description
                   price
                   image {
+                    caption
                     localFile {
                       childImageSharp {
                         fluid {
@@ -211,6 +215,7 @@ export const query = graphql`
                   }
                 }
                 images {
+                  caption
                   localFile {
                     childImageSharp {
                       fluid {
@@ -222,6 +227,7 @@ export const query = graphql`
               }
               ... on WordPressAcf_single_image {
                 image {
+                  caption
                   localFile {
                     childImageSharp {
                       fluid(maxWidth: 750) {

@@ -44,6 +44,25 @@ const Icons = {
   washing: Washing,
 }
 
+const Caption = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  outline: 1px solid rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  color: ${colours.white};
+  font-family: "Libre Baskerville", serif;
+`
+
 const DetailsContainer = styled.div`
   padding-top: 60px;
 `
@@ -213,12 +232,20 @@ const IconContainer = styled.div`
 `
 
 const ImageWrap = styled.div`
+  position: relative;
   padding: 0 10px;
   flex: 0 0 100%;
   height: 400px;
 
   @media (min-width: 768px) {
     flex: 0 0 50%;
+  }
+
+  &:hover {
+    ${Caption} {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 `
 
@@ -261,6 +288,11 @@ const VillaDetails = ({ data }) => {
               {data.images.map((image, index3) => (
                 <ImageWrap key={index3}>
                   <Img fluid={image.localFile.childImageSharp.fluid} />
+                  {image.caption ? (
+                    <Caption>
+                      {image.caption.replace(/(<([^>]+)>)/gi, "")}
+                    </Caption>
+                  ) : null}
                 </ImageWrap>
               ))}
             </div>

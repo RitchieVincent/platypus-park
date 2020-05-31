@@ -33,7 +33,27 @@ const IntroImages = styled.div`
   }
 `
 
+const Caption = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  outline: 1px solid rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  color: ${colours.white};
+  font-family: "Libre Baskerville", serif;
+`
+
 const IntroImage = styled.div`
+  position: relative;
   padding: 10px 10px 25px 10px;
   box-shadow: 0px 2px 15px #333;
   background-color: #eee;
@@ -57,6 +77,13 @@ const IntroImage = styled.div`
       transform: rotate(5deg);
     }
   }
+
+  &:hover {
+    ${Caption} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 `
 
 export default ({ data }) => {
@@ -76,6 +103,11 @@ export default ({ data }) => {
               data-sal-duration="1000"
             >
               <Img fixed={image.localFile.childImageSharp.fixed} />
+              {data.images[index].caption && index === 0 ? (
+                <Caption>
+                  {data.images[index].caption.replace(/(<([^>]+)>)/gi, "")}
+                </Caption>
+              ) : null}
             </IntroImage>
           ))}
         </IntroImages>
