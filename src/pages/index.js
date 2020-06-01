@@ -58,8 +58,8 @@ export default ({ data }) => {
           if (child.__typename === "WordPressAcf_image_links")
             return <ImageLinks key={index} data={child}></ImageLinks>
 
-          // if (child.__typename === "WordPressAcf_testimonials")
-          //   return <Testimonials key={index} data={options}></Testimonials>
+          if (child.__typename === "WordPressAcf_testimonials")
+            return <Testimonials key={index} data={options}></Testimonials>
 
           if (child.__typename === "WordPressAcf_youtube_video")
             return <Video key={index} data={child}></Video>
