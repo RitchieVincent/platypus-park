@@ -112,7 +112,6 @@ const Note = styled.div`
 `
 
 export default ({ data }) => {
-  console.log(data)
   return (
     <Container>
       <Categories>
