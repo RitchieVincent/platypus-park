@@ -27,11 +27,15 @@ const LogoContainer = styled.div`
 `
 
 const HeaderUpper = styled.div`
-  display: flex;
   justify-content: space-between;
   padding: 2px 40px;
   font-weight: 400;
   background-color: ${colours.blue};
+  display: none;
+
+  @media (min-width: 600px) {
+    display: flex;
+  }
 `
 
 const IconContainer = styled.div`

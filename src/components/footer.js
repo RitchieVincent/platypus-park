@@ -5,6 +5,12 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Container from "./container"
 
+import Twitter from "../images/twitter.svg"
+import Facebook from "../images/facebook.svg"
+import Email from "../images/email.svg"
+import Phone from "../images/phone.svg"
+import Map from "../images/map.svg"
+
 const FooterContainer = styled.footer`
   color: ${colours.darkBlue};
 
@@ -21,7 +27,7 @@ const FooterContainer = styled.footer`
 `
 
 const FooterUpper = styled.div`
-  padding: 60px 0;
+  padding-top: 40px;
   font-size: 0.9rem;
   border-bottom: 8px solid ${colours.blue};
   font-weight: 400;
@@ -35,6 +41,61 @@ const FooterUpperInner = styled.div`
 
   @media (min-width: 640px) {
     flex-direction: row;
+  }
+`
+
+const FooterUpperContact = styled.div`
+  margin-top: 30px;
+  margin-bottom: 10px;
+`
+
+const IconContainer = styled.div`
+  display: flex;
+  margin-left: auto;
+  justify-content: center;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`
+
+const Icon = styled.a`
+  display: flex;
+  align-items: center;
+  color: ${colours.white};
+  text-decoration: none;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  &:hover {
+    color: #000;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    fill: currentColor;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+
+    @media (min-width: 768px) {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+  }
+`
+
+const SocialIcons = styled.div`
+  display: flex;
+
+  a {
+    margin-right: 10px;
   }
 `
 
@@ -106,6 +167,20 @@ const Footer = () => {
           }
         }
       }
+      allWordpressAcfOptions {
+        edges {
+          node {
+            id
+            options {
+              address
+              email
+              facebook
+              phone
+              twitter
+            }
+          }
+        }
+      }
       file(name: { eq: "header-logo" }) {
         childImageSharp {
           fixed(width: 170, height: 55) {
@@ -144,6 +219,52 @@ const Footer = () => {
               )}
             </LinkContainer>
           </FooterUpperInner>
+          <FooterUpperContact>
+            <IconContainer>
+              <Icon
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  data.allWordpressAcfOptions.edges[0].node.options.address
+                )}`}
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <Map />
+                {data.allWordpressAcfOptions.edges[0].node.options.address}
+              </Icon>
+              <Icon
+                href={`mailto:${data.allWordpressAcfOptions.edges[0].node.options.email}`}
+              >
+                <Email />
+                {data.allWordpressAcfOptions.edges[0].node.options.email}
+              </Icon>
+              <Icon
+                href={`tel:${data.allWordpressAcfOptions.edges[0].node.options.phone}`}
+              >
+                <Phone />
+                {data.allWordpressAcfOptions.edges[0].node.options.phone}
+              </Icon>
+              <SocialIcons>
+                <Icon
+                  href={
+                    data.allWordpressAcfOptions.edges[0].node.options.twitter
+                  }
+                  target="_blank"
+                  rel="noopener nofollow"
+                >
+                  <Twitter />
+                </Icon>
+                <Icon
+                  href={
+                    data.allWordpressAcfOptions.edges[0].node.options.facebook
+                  }
+                  target="_blank"
+                  rel="noopener nofollow"
+                >
+                  <Facebook />
+                </Icon>
+              </SocialIcons>
+            </IconContainer>
+          </FooterUpperContact>
         </Container>
       </FooterUpper>
       <FooterLower>
