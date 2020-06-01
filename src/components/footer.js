@@ -199,6 +199,7 @@ const Footer = () => {
             <FooterLogo>
               <Link to="/">
                 <Img fixed={data.file.childImageSharp.fixed} />
+                <span className="visually-hidden">Homepage</span>
               </Link>
             </FooterLogo>
             <LinkContainer>
@@ -252,6 +253,7 @@ const Footer = () => {
                   rel="noopener nofollow"
                 >
                   <Twitter />
+                  <span className="visually-hidden">Twitter</span>
                 </Icon>
                 <Icon
                   href={
@@ -261,6 +263,7 @@ const Footer = () => {
                   rel="noopener nofollow"
                 >
                   <Facebook />
+                  <span className="visually-hidden">Facebook</span>
                 </Icon>
               </SocialIcons>
             </IconContainer>

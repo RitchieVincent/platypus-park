@@ -302,6 +302,7 @@ const Header = () => {
             rel="noopener nofollow"
           >
             <Twitter />
+            <span className="visually-hidden">Twitter</span>
           </Icon>
           <Icon
             href={data.allWordpressAcfOptions.edges[0].node.options.facebook}
@@ -309,6 +310,7 @@ const Header = () => {
             rel="noopener nofollow"
           >
             <Facebook />
+            <span className="visually-hidden">Facebook</span>
           </Icon>
         </IconContainer>
       </HeaderUpper>
@@ -316,6 +318,7 @@ const Header = () => {
         <LogoContainer>
           <Link to="/">
             <Img css={logo} fixed={data.file.childImageSharp.fixed} />
+            <span className="visually-hidden">Homepage</span>
           </Link>
         </LogoContainer>
         {!menuOpen ? (

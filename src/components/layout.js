@@ -40,6 +40,14 @@ const Layout = ({ children }) => {
             font-family: "Libre Baskerville", serif;
             font-weight: 300;
           }
+          .visually-hidden:not(:focus):not(:active) {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
+          }
         `}
       />
       <Header siteTitle={data.site.siteMetadata.title} />
