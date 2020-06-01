@@ -320,7 +320,10 @@ const Header = () => {
         </LogoContainer>
         {!menuOpen ? (
           <MenuToggle>
-            <MenuToggleButton onClick={() => setMenuOpen(true)}>
+            <MenuToggleButton
+              aria-label="Open Mobile Menu"
+              onClick={() => setMenuOpen(true)}
+            >
               <Bars />
             </MenuToggleButton>
           </MenuToggle>
@@ -345,7 +348,10 @@ const Header = () => {
       </HeaderLower>
       <RemoveScroll enabled={menuOpen}>
         <MobileMenu className={menuOpen ? "active" : ""}>
-          <Times onClick={() => setMenuOpen(false)} />
+          <Times
+            aria-label="Close Mobile Menu"
+            onClick={() => setMenuOpen(false)}
+          />
           {data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
             (node, index) => {
               let title = node.title
