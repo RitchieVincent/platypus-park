@@ -5,7 +5,6 @@ import Container from "../components/container"
 
 const Title = styled.h2`
   border-bottom: 2px solid ${colours.blue};
-  /* padding-top: 60px; */
   padding-bottom: 5px;
   margin-bottom: 30px;
   display: inline-flex;

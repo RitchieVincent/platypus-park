@@ -18,6 +18,7 @@ import WeddingPackages from "../blocks/weddingPackages"
 import VillaDetails from "../blocks/villaDetails"
 import SingleImage from "../blocks/singleImage"
 import Amenities from "../blocks/amenities"
+import CampingZones from "../blocks/campingZones"
 
 export default ({ data }) => {
   const page = data.allWordpressPage.edges[0].node
@@ -77,6 +78,9 @@ export default ({ data }) => {
 
           if (child.__typename === "WordPressAcf_amenities")
             return <Amenities key={index} data={child}></Amenities>
+
+          if (child.__typename === "WordPressAcf_camping_zones")
+            return <CampingZones key={index} data={child}></CampingZones>
 
           if (child.__typename === "WordPressAcf_price_table")
             return <PriceTable key={index} data={child}></PriceTable>
@@ -241,6 +245,22 @@ export const query = graphql`
                 items {
                   title
                   icon
+                  text
+                }
+              }
+              ... on WordPressAcf_camping_zones {
+                zone {
+                  title
+                  image {
+                    caption
+                    localFile {
+                      childImageSharp {
+                        fluid(maxHeight: 200) {
+                          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                        }
+                      }
+                    }
+                  }
                   text
                 }
               }
