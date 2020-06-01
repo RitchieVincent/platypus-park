@@ -19,6 +19,7 @@ import VillaDetails from "../blocks/villaDetails"
 import SingleImage from "../blocks/singleImage"
 import Amenities from "../blocks/amenities"
 import CampingZones from "../blocks/campingZones"
+import AccommodationPrices from "../blocks/accommodationPrices"
 
 export default ({ data }) => {
   const page = data.allWordpressPage.edges[0].node
@@ -81,6 +82,14 @@ export default ({ data }) => {
 
           if (child.__typename === "WordPressAcf_camping_zones")
             return <CampingZones key={index} data={child}></CampingZones>
+
+          if (child.__typename === "WordPressAcf_accommodation_prices")
+            return (
+              <AccommodationPrices
+                key={index}
+                data={child}
+              ></AccommodationPrices>
+            )
 
           if (child.__typename === "WordPressAcf_price_table")
             return <PriceTable key={index} data={child}></PriceTable>
@@ -184,7 +193,6 @@ export const query = graphql`
                     }
                   }
                 }
-                notes
               }
               ... on WordPressAcf_testimonials {
                 id
@@ -262,6 +270,25 @@ export const query = graphql`
                     }
                   }
                   text
+                }
+              }
+              ... on WordPressAcf_accommodation_prices {
+                category {
+                  title
+                  subtitle
+                  price_tables {
+                    title
+                    subtitle
+                    prices {
+                      header {
+                        c
+                      }
+                      body {
+                        c
+                      }
+                    }
+                  }
+                  note
                 }
               }
             }

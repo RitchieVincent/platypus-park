@@ -178,7 +178,6 @@ export const query = graphql`
                     }
                   }
                 }
-                notes
               }
               ... on WordPressAcf_testimonials {
                 id
@@ -239,6 +238,22 @@ export const query = graphql`
                 items {
                   title
                   icon
+                  text
+                }
+              }
+              ... on WordPressAcf_camping_zones {
+                zone {
+                  title
+                  image {
+                    caption
+                    localFile {
+                      childImageSharp {
+                        fluid(maxHeight: 200) {
+                          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                        }
+                      }
+                    }
+                  }
                   text
                 }
               }

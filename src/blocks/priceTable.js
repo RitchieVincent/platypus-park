@@ -14,18 +14,7 @@ const CategoryTitle = styled.h2`
 `
 
 const PriceBlockContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 20px;
   padding: 20px 0;
-
-  @media (min-width: 500px) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 `
 
 const PriceCategory = styled.div`
@@ -41,6 +30,10 @@ const PriceBlock = styled.div`
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
   padding: 30px 30px 30px 30px;
+
+  &:not(:last-of-type) {
+    margin-bottom: 40px;
+  }
 `
 
 const Title = styled.div`
