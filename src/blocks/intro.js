@@ -92,7 +92,7 @@ export default ({ data }) => {
       <Intro>
         <IntroText>
           <IntroTitle>{data.title}</IntroTitle>
-          <div>{data.text}</div>
+          <div dangerouslySetInnerHTML={{ __html: data.text }} />
         </IntroText>
         <IntroImages>
           {data.images.map((image, index) => (
