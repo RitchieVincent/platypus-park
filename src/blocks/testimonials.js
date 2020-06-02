@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react"
-import { useEmblaCarousel } from "embla-carousel-react"
+import React, { useState, useEffect } from "react"
 import styled from "@emotion/styled"
 import { colours } from "../components/theme"
 import Img from "gatsby-image"
 
-import { DotButton, PrevButton, NextButton } from "./EmblaCarouselButtons"
+// import { DotButton, PrevButton, NextButton } from "./EmblaCarouselButtons"
 
 const TestimonialsContainer = styled.section`
   position: relative;
@@ -21,12 +20,8 @@ const TestimonialsContainer = styled.section`
 const Testimonials = styled.div`
   position: relative;
   max-width: 800px;
-  width: 75%;
+  width: 101%;
   margin: 0 auto;
-
-  @media (min-width: 900px) {
-    width: 100%;
-  }
 
   .embla__viewport {
     overflow: hidden;
@@ -125,6 +120,7 @@ const Testimonial = styled.div`
   flex: 0 0 auto;
   color: ${colours.darkBlue};
   padding: 10px;
+  scroll-snap-align: center;
 
   @media (min-width: 768px) {
   }
@@ -150,6 +146,7 @@ const TestimonialName = styled.div`
   line-height: 1;
   margin-bottom: 5px;
 `
+
 const TestimonialTitle = styled.div`
   font-size: 0.6rem;
   text-transform: uppercase;
@@ -169,51 +166,23 @@ const TestimonialsBg = styled.div`
   bottom: 0;
   left: 0;
   z-index: -1;
-  backdrop-filter: blur(2px);
 
   .gatsby-image-wrapper {
     height: 100%;
   }
 `
 
+const Carousel = styled.div`
+  display: flex;
+  overflow: scroll;
+  scroll-snap-type: x mandatory;
+`
+
 const TestimonialComponent = data => {
-  const [EmblaCarouselReact, embla] = useEmblaCarousel({
-    loop: false,
-    align: "center",
-    containScroll: true,
-    autoplay: true,
-    delayLength: 2000,
-  })
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState([])
-
-  const scrollTo = useCallback(index => embla.scrollTo(index), [embla])
-  const scrollPrev = useCallback(() => embla.scrollPrev(), [embla])
-  const scrollNext = useCallback(() => embla.scrollNext(), [embla])
-
-  useEffect(() => {
-    if (embla) {
-      const onSelect = () => {
-        setSelectedIndex(embla.selectedScrollSnap())
-        setPrevBtnEnabled(embla.canScrollPrev())
-        setNextBtnEnabled(embla.canScrollNext())
-      }
-      setScrollSnaps(embla.scrollSnapList())
-      embla.on("select", onSelect)
-      onSelect()
-    }
-  }, [embla])
-
   return (
     <>
       <TestimonialsContainer>
-        <TestimonialsBg
-          data-sal="fade"
-          data-sal-easing="easeOutQuad"
-          data-sal-duration="1000"
-        >
+        <TestimonialsBg>
           <Img
             fluid={
               data.data.options.background_image.localFile.childImageSharp.fluid
@@ -222,34 +191,24 @@ const TestimonialComponent = data => {
         </TestimonialsBg>
         <TestimonialContainerTitle>Testimonials</TestimonialContainerTitle>
         <Testimonials>
-          <EmblaCarouselReact className="embla__viewport">
-            <div className="embla__container">
-              {data.data.options.testimonial.map((t, index) => (
-                <Testimonial key={index}>
-                  <TestimonialInner>
-                    <TestimonialQuote>{t.quote}</TestimonialQuote>
-                    <TestimonialName>{t.name}</TestimonialName>
-                    <TestimonialTitle>{t.title}</TestimonialTitle>
-                  </TestimonialInner>
-                </Testimonial>
-              ))}
-            </div>
-          </EmblaCarouselReact>
-          <div className="embla__dots">
-            {scrollSnaps.map((snap, index) => (
-              <DotButton
-                selected={index === selectedIndex}
-                onClick={() => scrollTo(index)}
-                key={index}
-              />
+          <Carousel>
+            {data.data.options.testimonial.map((t, index) => (
+              <Testimonial key={index}>
+                <TestimonialInner>
+                  <TestimonialQuote>{t.quote}</TestimonialQuote>
+                  <TestimonialName>{t.name}</TestimonialName>
+                  <TestimonialTitle>{t.title}</TestimonialTitle>
+                </TestimonialInner>
+              </Testimonial>
             ))}
-          </div>
-          <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
-          <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+          </Carousel>
         </Testimonials>
       </TestimonialsContainer>
     </>
   )
 }
+
+// <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+//           <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
 
 export default TestimonialComponent
