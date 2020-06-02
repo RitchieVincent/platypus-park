@@ -46,15 +46,6 @@ module.exports = {
         // },
       },
     },
-    // {
-    //   resolve: `gatsby-wordpress-gutenberg`,
-    //   options: {
-    //     baseUrl: `wpprr.local`,
-    //     https: false,
-    //     // includedTypes: ["wordpress__POST", "wordpress__PAGE"], // Nodes that contain Gutenberg blocks to transform - optional
-    //     // excludedBlocks: [], // Blocks to exclude - optional
-    //   },
-    // },
     `gatsby-plugin-sitemap`,
     {
       resolve: "gatsby-plugin-react-svg",
@@ -90,5 +81,7 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify-cache`,
+    `gatsby-plugin-preact`,
   ],
 }
