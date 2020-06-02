@@ -50,9 +50,6 @@ export default ({ data }) => {
           if (child.__typename === "WordPressAcf_text")
             return <Text key={index} data={child}></Text>
 
-          if (child.__typename === "WordPressAcf_hero")
-            return <Hero key={index} data={child} />
-
           if (child.__typename === "WordPressAcf_intro")
             return <Intro key={index} data={child}></Intro>
 
@@ -120,7 +117,7 @@ export const query = graphql`
                   localFile {
                     childImageSharp {
                       fluid {
-                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                        ...GatsbyImageSharpFluid_withWebp
                       }
                     }
                   }
@@ -138,10 +135,10 @@ export const query = graphql`
                   localFile {
                     childImageSharp {
                       fluid {
-                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                        ...GatsbyImageSharpFluid_withWebp
                       }
                       fixed(width: 180, height: 180) {
-                        ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                        ...GatsbyImageSharpFixed_withWebp
                       }
                     }
                   }
@@ -158,7 +155,7 @@ export const query = graphql`
                     localFile {
                       childImageSharp {
                         fluid {
-                          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                          ...GatsbyImageSharpFluid_withWebp
                         }
                       }
                     }
@@ -174,7 +171,7 @@ export const query = graphql`
                   localFile {
                     childImageSharp {
                       fixed(width: 200, height: 250) {
-                        ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                        ...GatsbyImageSharpFixed_withWebp
                       }
                     }
                   }
@@ -210,7 +207,7 @@ export const query = graphql`
                     localFile {
                       childImageSharp {
                         fluid {
-                          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                          ...GatsbyImageSharpFluid_withWebp
                         }
                       }
                     }
@@ -231,7 +228,7 @@ export const query = graphql`
                   localFile {
                     childImageSharp {
                       fluid {
-                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                        ...GatsbyImageSharpFluid_withWebp
                       }
                     }
                   }
@@ -243,7 +240,7 @@ export const query = graphql`
                   localFile {
                     childImageSharp {
                       fluid(maxWidth: 750) {
-                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                        ...GatsbyImageSharpFluid_withWebp
                       }
                     }
                   }
@@ -264,7 +261,7 @@ export const query = graphql`
                     localFile {
                       childImageSharp {
                         fluid(maxHeight: 200) {
-                          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                          ...GatsbyImageSharpFluid_withWebp
                         }
                       }
                     }
@@ -310,7 +307,7 @@ export const query = graphql`
               localFile {
                 childImageSharp {
                   fluid {
-                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    ...GatsbyImageSharpFluid_withWebp
                   }
                 }
               }
