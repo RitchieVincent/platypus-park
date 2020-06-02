@@ -11,6 +11,7 @@ const TestimonialsContainer = styled.section`
   padding-top: 60px;
   padding-bottom: 80px;
   margin-bottom: 40px;
+  overflow: hidden;
 
   @media (min-width: 900px) {
     margin-bottom: 0;
