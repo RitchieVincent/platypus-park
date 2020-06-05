@@ -9,6 +9,7 @@ const Intro = styled.div`
   padding-top: 30px;
   padding-bottom: 60px;
   flex-direction: column;
+  justify-content: space-between;
 
   @media (min-width: 768px) {
     flex-direction: row;
