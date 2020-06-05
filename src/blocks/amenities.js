@@ -12,6 +12,12 @@ import Sun from "../images/sun.svg"
 import Canoe from "../images/canoe.svg"
 import Platypus from "../images/platypus.svg"
 import Volleyball from "../images/volleyball.svg"
+import Electriccar from "../images/electriccar.svg"
+import Birdwatching from "../images/birdwatching.svg"
+import Ski from "../images/ski.svg"
+import Vacations from "../images/vacations.svg"
+import Tesla from "../images/tesla.svg"
+import Fisherman from "../images/fisherman.svg"
 
 const AmenitiesContainer = styled.div`
   display: flex;
@@ -51,6 +57,12 @@ const Icons = {
   canoe: Canoe,
   platypus: Platypus,
   volleyball: Volleyball,
+  electriccar: Electriccar,
+  birdwatching: Birdwatching,
+  ski: Ski,
+  vacations: Vacations,
+  tesla: Tesla,
+  fisherman: Fisherman,
 }
 
 const Title = styled.div`
@@ -76,7 +88,7 @@ export default ({ data }) => {
               data-sal="slide-up"
               data-sal-easing="easeOutQuad"
               data-sal-duration="1000"
-              data-sal-delay={index * `100`}
+              data-sal-delay={index * `50`}
             >
               <AmenityUpper>
                 <Icon></Icon>
