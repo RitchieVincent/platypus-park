@@ -2,7 +2,6 @@ import React from "react"
 import styled from "@emotion/styled"
 import Container from "../components/container"
 import Img from "gatsby-image"
-import { colours } from "../components/theme"
 
 const Caption = styled.div`
   position: absolute;

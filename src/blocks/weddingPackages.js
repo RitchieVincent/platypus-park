@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 import Container from "../components/container"
 import Img from "gatsby-image"
 import { colours } from "../components/theme"
+import { Link } from "gatsby"
 
 const Caption = styled.div`
   position: absolute;
@@ -79,17 +80,21 @@ const Wrapper = styled.section`
   margin-bottom: 60px;
 `
 
-const Enquire = styled.a`
+const Enquire = styled.div`
   background-color: ${colours.blue};
-  color: ${colours.white};
-  border: 0;
-  text-transform: uppercase;
-  font-weight: 600;
   align-self: flex-start;
-  padding: 10px 20px;
   cursor: pointer;
-  text-decoration: none;
-  font-size: 0.8rem;
+
+  a {
+    display: block;
+    padding: 10px 20px;
+    color: ${colours.white};
+    border: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
 `
 
 export default ({ data }) => {
@@ -139,9 +144,8 @@ export default ({ data }) => {
                 data-sal-easing="easeOutQuad"
                 data-sal-duration="1400"
                 data-sal-delay="800"
-                href="/"
               >
-                Enquire now!
+                <Link to="/contact">Enquire now!</Link>
               </Enquire>
             </Info>
           </Package>
