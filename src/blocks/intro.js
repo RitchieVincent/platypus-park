@@ -43,12 +43,12 @@ const Caption = styled.div`
   justify-content: center;
   padding: 10px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  outline: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
+  outline: 1px solid rgba(255, 255, 255, 0.8);
   transition: all 0.3s ease;
   opacity: 0;
   visibility: hidden;
-  color: ${colours.white};
+  color: #000;
   font-family: "Libre Baskerville", serif;
 `
 
