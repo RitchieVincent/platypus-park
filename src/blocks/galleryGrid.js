@@ -26,10 +26,14 @@ const Caption = styled.div`
 
 const GalleryGridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 180px);
+  grid-template-columns: repeat(auto-fill, calc(50% - 5px));
   grid-gap: 10px;
   padding-bottom: 60px;
   justify-content: center;
+
+  @media (min-width: 400px) {
+    grid-template-columns: repeat(auto-fill, 180px);
+  }
 
   @media (min-width: 768px) {
     padding-top: 60px;
@@ -75,17 +79,19 @@ const LightBoxOverlay = styled.div`
 
 const LighBoxImage = styled.div`
   position: absolute;
-  top: 60px;
-  right: 60px;
-  bottom: 60px;
-  left: 60px;
+  top: 20px;
+  right: 5px;
+  bottom: 20px;
+  left: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   .gatsby-image-wrapper {
     flex: 1;
     max-height: 100%;
+    width: 100%;
   }
 
   &:hover {
@@ -93,6 +99,14 @@ const LighBoxImage = styled.div`
       opacity: 1;
       visibility: visible;
     }
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    top: 60px;
+    right: 60px;
+    bottom: 60px;
+    left: 60px;
   }
 `
 
@@ -109,6 +123,7 @@ const CloseButton = styled.button`
   font-size: 2rem;
   border-bottom: 3px solid ${colours.blue};
   box-shadow: 0px 2px 5px #333;
+  z-index: 1;
 `
 
 const Button = styled.button`
@@ -122,6 +137,29 @@ const Button = styled.button`
   text-transform: uppercase;
   font-weight: 600;
   box-shadow: 0px 2px 5px #333;
+  z-index: 1;
+
+  &.next {
+    position: absolute;
+    top: 70px;
+    right: 15px;
+  }
+
+  &.prev {
+    position: absolute;
+    top: 70px;
+    left: 15px;
+  }
+
+  @media (min-width: 768px) {
+    &.next {
+      top: -40px;
+    }
+
+    &.prev {
+      top: -40px;
+    }
+  }
 `
 
 const GalleryGridComponent = ({ data }) => {
@@ -130,7 +168,6 @@ const GalleryGridComponent = ({ data }) => {
 
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
-      // console.log(keyCode)
       if (keyCode === 27) {
         setLightBoxOpen(false)
       }
@@ -187,6 +224,7 @@ const GalleryGridComponent = ({ data }) => {
           <LighBoxImage>
             <Button
               css={{ marginRight: "20px" }}
+              className="prev"
               onClick={() =>
                 setLightBoxImage(
                   lightboxImage === 0
@@ -205,6 +243,7 @@ const GalleryGridComponent = ({ data }) => {
             />
             <Button
               css={{ marginLeft: "20px" }}
+              className="next"
               onClick={() =>
                 setLightBoxImage(
                   lightboxImage === data.images.length - 1
