@@ -1,13 +1,13 @@
 const path = require(`path`)
 const fs = require("fs")
 
-exports.onPostBuild = () => {
-  fs.copyFile(`./firebase.json`, `./public/firebase.json`, err => {
-    if (err) {
-      throw err
-    }
-  })
-}
+// exports.onPostBuild = () => {
+//   fs.copyFile(`./firebase.json`, `./public/firebase.json`, err => {
+//     if (err) {
+//       throw err
+//     }
+//   })
+// }
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions

@@ -161,14 +161,12 @@ const LinkContainer = styled.div`
 const Footer = () => {
   const data = useStaticQuery(graphql`
     {
-      allWordpressWpApiMenusMenusItems(
-        filter: { name: { eq: "Footer Menu" } }
-      ) {
+      allWordpressMenusMenusItems(filter: { name: { eq: "Footer Menu" } }) {
         edges {
           node {
             items {
               title
-              object_slug
+              slug
             }
           }
         }
@@ -209,7 +207,7 @@ const Footer = () => {
               </Link>
             </FooterLogo>
             <LinkContainer>
-              {data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
+              {data.allWordpressMenusMenusItems.edges[0].node.items.map(
                 (node, index) => {
                   let title = node.title
                   title = title.replace(/&#038;/g, "&")

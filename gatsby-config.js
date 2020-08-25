@@ -7,7 +7,7 @@ module.exports = {
     title: `Platypus Park Riverside Retreat - Bundaberg Wedding Venue and Holiday Destination`,
     description: `A 50 acre organic farm on the Burnett River that offers a stunning venue for your country wedding as well as villa accommodation or camping facilities.`,
     author: `Ritchie Vincent`,
-    siteUrl: `http://178.62.73.143`,
+    siteUrl: `https://admin.platypusparkriversideretreat.com.au`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -35,8 +35,8 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: `178.62.73.143`,
-        protocol: `http`,
+        baseUrl: `admin.platypusparkriversideretreat.com.au`,
+        protocol: `https`,
         hostingWPCOM: false,
         useACF: true,
         // auth: {

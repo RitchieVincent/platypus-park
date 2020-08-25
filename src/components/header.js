@@ -255,14 +255,12 @@ const Header = () => {
           }
         }
       }
-      allWordpressWpApiMenusMenusItems(
-        filter: { name: { eq: "Header Menu" } }
-      ) {
+      allWordpressMenusMenusItems(filter: { name: { eq: "Header Menu" } }) {
         edges {
           node {
             items {
               title
-              object_slug
+              slug
             }
           }
         }
@@ -332,7 +330,7 @@ const Header = () => {
           </MenuToggle>
         ) : null}
         <Menu sticky={!inView}>
-          {data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
+          {data.allWordpressMenusMenusItems.edges[0].node.items.map(
             (node, index) => {
               let title = node.title
               title = title.replace(/&#038;/g, "&")
@@ -355,7 +353,7 @@ const Header = () => {
             aria-label="Close Mobile Menu"
             onClick={() => setMenuOpen(false)}
           />
-          {data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
+          {data.allWordpressMenusMenusItems.edges[0].node.items.map(
             (node, index) => {
               let title = node.title
               title = title.replace(/&#038;/g, "&")
