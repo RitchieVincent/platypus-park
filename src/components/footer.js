@@ -213,7 +213,7 @@ const Footer = () => {
                   title = title.replace(/&#038;/g, "&")
                   return (
                     <Link
-                      to={`/${node.object_slug}`}
+                      to={`/${node.slug}`}
                       key={index}
                       activeStyle={{ color: "#29b3ba" }}
                     >

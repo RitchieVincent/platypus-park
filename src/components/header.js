@@ -335,11 +335,7 @@ const Header = () => {
               let title = node.title
               title = title.replace(/&#038;/g, "&")
               return (
-                <Link
-                  to={`/${node.object_slug}`}
-                  key={index}
-                  activeClassName="active"
-                >
+                <Link to={`/${node.slug}`} key={index} activeClassName="active">
                   {title}
                 </Link>
               )
@@ -358,11 +354,7 @@ const Header = () => {
               let title = node.title
               title = title.replace(/&#038;/g, "&")
               return (
-                <Link
-                  to={`/${node.object_slug}`}
-                  key={index}
-                  activeClassName="active"
-                >
+                <Link to={`/${node.slug}`} key={index} activeClassName="active">
                   {title}
                 </Link>
               )
