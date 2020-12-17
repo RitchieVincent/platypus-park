@@ -57,17 +57,15 @@ module.exports = {
     },
     `gatsby-plugin-emotion`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: "@slixites/gatsby-plugin-google-fonts",
       options: {
-        fonts: [
-          {
-            family: `Libre Baskerville`,
-          },
-          {
-            family: `Nunito Sans`,
-            variants: [`300`, `400`, `800`],
-          },
-        ],
+        fonts: ["Libre Baskerville", "Nunito Sans:300,400,800"],
+        display: "swap",
+        preconnect: true,
+        attributes: {
+          rel: "stylesheet preload prefetch",
+          as: "style",
+        },
       },
     },
     {
