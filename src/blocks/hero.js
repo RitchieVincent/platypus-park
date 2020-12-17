@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react"
+import React, { useLayoutEffect } from "react"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { colours } from "../components/theme"
